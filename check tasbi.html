@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rehan Tasbih | ریحان تسبیح</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle, #001a0e, #000);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #00ff99, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h2 {
+      font-size: 1.3em;
+      color: #ddd;
+      margin-bottom: 30px;
+    }
+    .count {
+      font-size: 6em;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #00ffcc;
+      text-shadow: 0 0 20px #00ffcc;
+    }
+    .buttons {
+      display: flex;
+      gap: 20px;
+    }
+    button {
+      background: linear-gradient(145deg, #004d26, #006633);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5em;
+      width: 70px;
+      height: 70px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0,255,150,0.3);
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #00ff99;
+    }
+    select {
+      margin-top: 20px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: none;
+      background: #004d26;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Rehan Tasbih | ریحان تسبیح</h1>
+  <h2>Digital Counter for Zikr & Tasbih</h2>
+
+  <div class="count" id="count">0</div>
+
+  <div class="buttons">
+    <button onclick="decreaseCount()">➖</button>
+    <button onclick="increaseCount()">➕</button>
+    <button onclick="resetCount()">🔁</button>
+  </div>
+
+  <select id="tasbihSelect" onchange="setTasbih(this.value)">
+    <option value="">Select Tasbih...</option>
+    <option value="SubhanAllah">SubhanAllah - 33</option>
+    <option value="Alhamdulillah">Alhamdulillah - 33</option>
+    <option value="AllahuAkbar">Allahu Akbar - 34</option>
+    <option value="Astaghfirullah">Astaghfirullah - Unlimited</option>
+  </select>
+
+  <div class="footer">Made with ❤️ by Rehan Sohail</div>
+
+  <script>
+    let count = 0;
+
+    function increaseCount() {
+      count++;
+      document.getElementById("count").textContent = count;
+    }
+
+    function decreaseCount() {
+      if (count > 0) count--;
+      document.getElementById("count").textContent = count;
+    }
+
+    function resetCount() {
+      count = 0;
+      document.getElementById("count").textContent = count;
+    }
+
+    function setTasbih(name) {
+      resetCount();
+      if (name === "SubhanAllah") countLimit = 33;
+      else if (name === "Alhamdulillah") countLimit = 33;
+      else if (name === "AllahuAkbar") countLimit = 34;
+      else countLimit = Infinity;
+    }
+
+    // Optional: increase count with spacebar
+    document.addEventListener("keydown", (e) => {
+      if (e.code === "Space") increaseCount();
+    });
+  </script>
+
+</body>
+</html>
